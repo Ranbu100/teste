@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({Key? key}) : super(key: key);
@@ -22,6 +25,46 @@ class _RegistrationPageState extends State<RegistrationPage>
   final TextEditingController cnpjController = TextEditingController();
   final TextEditingController enderecoController = TextEditingController();
   final TextEditingController emailempresaController = TextEditingController();
+
+  Future<void> _registerUser(BuildContext context) async {
+    try {
+      String apiUrl = 'http://localhost:3000/cadastro';
+
+      Map<String, dynamic> userData = {
+        'email': emailController.text,
+        'senha': senhaController.text,
+        'cpf': cpfController.text,
+        'tipo': currentTabIndex == 0 ? 'cadastro_pessoa' : 'cadastro_empresa',
+        // Adicione outros campos conforme necessário
+      };
+
+      final response = await http.post(
+        Uri.parse(apiUrl),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode(userData),
+      );
+
+      if (response.statusCode == 201) {
+        // Cadastro bem-sucedido
+        Navigator.of(context).pushReplacementNamed("L");
+      } else if (response.statusCode == 400) {
+        // E-mail já cadastrado
+        setState(() {
+          mensagemErro = 'E-mail já cadastrado.';
+        });
+      } else {
+        // Erro desconhecido
+        setState(() {
+          mensagemErro = 'Erro ao cadastrar usuário.';
+        });
+      }
+    } catch (error) {
+      print('Erro ao cadastrar usuário: $error');
+      setState(() {
+        mensagemErro = 'Erro interno do aplicativo.';
+      });
+    }
+  }
 
   String mensagemErro = '';
   int currentTabIndex = 0;
@@ -338,7 +381,7 @@ class _RegistrationPageState extends State<RegistrationPage>
     );
   }
 
-  void _registerUser(BuildContext context) {
+  void __registerUser(BuildContext context) {
     Navigator.of(context).pushReplacementNamed("L");
   }
 }
