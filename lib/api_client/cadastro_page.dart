@@ -376,6 +376,7 @@ class _RegistrationPageState extends State<RegistrationPage>
         child: Text(
           'Cadastrar',
           textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.white),
         ),
       ),
     );

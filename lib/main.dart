@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'recicla_app.dart';
-import 'preferences_service.dart';
+import 'api_client/recicla_app.dart';
+import 'api_client/preferences_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
