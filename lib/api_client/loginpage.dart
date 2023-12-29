@@ -69,6 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                       Alignment.center, // Centraliza o texto horizontalmente
                   child: const Text(
                     'Login',
+                    style: TextStyle(color: Colors.white),
                     textAlign: TextAlign.center,
                   ),
                 ),

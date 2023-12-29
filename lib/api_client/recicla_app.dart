@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'onboarding_screen.dart';
 import 'solicitacaopage.dart';
 import 'cadastro_page.dart';
 import 'homepage.dart';
 import 'loginpage.dart';
-import 'onboarding_screen.dart';
+
 import 'tela_transicao.dart';
 
 class AppWidget extends StatelessWidget {

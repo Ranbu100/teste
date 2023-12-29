@@ -28,7 +28,7 @@ class _RegistrationPageState extends State<RegistrationPage>
 
   Future<void> _registerUser(BuildContext context) async {
     try {
-      String apiUrl = 'http://localhost:3000/cadastro';
+      String apiUrl = 'http://localhost:5444';
 
       Map<String, dynamic> userData = {
         'email': emailController.text,

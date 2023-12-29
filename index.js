@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const { Pool } = require('pg');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5444;
 
 app.use(bodyParser.json());
 
@@ -15,8 +15,8 @@ pool.connect()
   .then(() => {
     console.log('Conectado ao banco de dados PostgreSQL');
   })
-  .catch((err) => {
-    console.error('Erro ao conectar ao banco de dados:', err);
+  .catch((error) => {
+    console.error('Erro ao conectar ao banco de dados:', error);
   });
 
 // Rota para cadastrar um novo usuário
